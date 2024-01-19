@@ -1,0 +1,20 @@
+[
+  {
+    "text": "some todo text 1",
+    "id": 1,
+    "marked": false,
+    "color": "#12313"
+  },
+  {
+    "text": "some todo text 2",
+    "id": 2,
+    "marked": false,
+    "color": "#123654"
+  },
+  {
+    "text": "some todo text 3",
+    "id": 3,
+    "marked": true,
+    "color": "#645342"
+  }
+]
