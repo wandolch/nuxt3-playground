@@ -10,7 +10,6 @@ if (process.client) {
   todoStore.fetchSettings()
 }
 
-
 const newTodoText = ref('');
 const nextTodoId = ref(0);
 
@@ -35,6 +34,7 @@ const editTodo = (updatedTodo: ITodoItem) => {
 
 <template>
   <div>
+    <h1>Todos are hydrated from nuxt:</h1>
     <input v-model="newTodoText" @keyup.enter="addTodo" placeholder="Add a new todo"/>
     <ul v-if="todoStore.todos?.length">
       <todo-item
@@ -45,5 +45,8 @@ const editTodo = (updatedTodo: ITodoItem) => {
           @edit-todo="editTodo"
       />
     </ul>
+
+    <h1>This data is loaded only on client client:</h1>
+    <div>{{todoStore.settingsLoading ? 'Loading' : todoStore.settings?.view}}</div>
   </div>
 </template>
