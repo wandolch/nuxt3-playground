@@ -8,6 +8,10 @@ type ITodoSettings = {
     view: TodoViewStyle
 }
 
+type ILazyInfo = {
+    info: string
+}
+
 type ITodoItem = {
     id: number,
     text: string,
@@ -15,4 +19,4 @@ type ITodoItem = {
     marked: boolean,
 }
 
-export type { ITodoItem, ITodoSettings };
+export type { ITodoItem, ITodoSettings, ILazyInfo };

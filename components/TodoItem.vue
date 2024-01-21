@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {ITodoItem} from "~/src/types";
+import type {ITodoItem} from "~/types";
 import type {PropType} from "vue";
 
 const emit = defineEmits(['editTodo', 'deleteTodo'])
@@ -18,7 +18,6 @@ const edit = () => {
 };
 
 const saveEdit = () => {
-  debugger
   editing.value = false;
   emit('editTodo', {...todo.value, text: editableText.value});
 };
@@ -31,7 +30,7 @@ const deleteTodo = () => {
 <template>
   <li>
     <input v-if="editing" v-model="editableText" @keyup.enter="saveEdit" @blur="saveEdit"/>
-    <span v-else @dblclick="edit">{{ todo.text }}</span>
+    <span v-else style="cursor: pointer" @click="edit">{{ todo.text }}</span>
     <button @click="deleteTodo">Delete</button>
   </li>
 </template>

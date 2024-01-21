@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import TodoItem from './TodoItem.vue';
-import {useTodoStore} from "~/src/stores/todoStore";
-import type {ITodoItem} from "~/src/types";
+import type {ITodoItem} from "~/types";
 
 const todoStore = useTodoStore()
 await useAsyncData('todos', () => todoStore.fetchTodos())
@@ -47,6 +45,6 @@ const editTodo = (updatedTodo: ITodoItem) => {
     </ul>
 
     <h1>This data is loaded only on client client:</h1>
-    <div>{{todoStore.settingsLoading ? 'Loading' : todoStore.settings?.view}}</div>
+    <div style="margin-bottom: 100px">{{todoStore.settings ? 'Settings: ' + todoStore.settings?.view : "Loading"}}</div>
   </div>
 </template>

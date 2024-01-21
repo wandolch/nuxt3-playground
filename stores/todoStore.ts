@@ -1,11 +1,10 @@
 import {skipHydrate} from "pinia";
-import type {ITodoItem, ITodoSettings} from "~/src/types";
+import type {ITodoItem, ITodoSettings} from "~/types";
 
 export const useTodoStore = defineStore('todoStore', () => {
     const todos = ref<ITodoItem[]>([])
     const todosLoading = ref<boolean>(false)
     const settings = ref<ITodoSettings | null>(null)
-    const settingsLoading = ref<boolean>(false)
 
     const markedTodos = computed(() => todos.value?.map(todo => todo.marked))
 
@@ -29,7 +28,6 @@ export const useTodoStore = defineStore('todoStore', () => {
     }
 
     const fetchTodos = async function () {
-        debugger
         todosLoading.value = true
         const newTodos: ITodoItem[] = await $fetch('http://127.0.0.1:8080/todos.json')
         setTodos(newTodos)
@@ -38,11 +36,7 @@ export const useTodoStore = defineStore('todoStore', () => {
     }
 
     const fetchSettings = async function () {
-        debugger
-        settingsLoading.value = true
         settings.value = await $fetch('http://127.0.0.1:8080/settings.json')
-        settingsLoading.value = false
-        // return settings.value
     }
 
 
@@ -51,7 +45,6 @@ export const useTodoStore = defineStore('todoStore', () => {
         markedTodos,
         settings: skipHydrate(settings),
         todosLoading,
-        settingsLoading,
         updateTodo,
         deleteTodo,
         addTodo,
@@ -61,6 +54,6 @@ export const useTodoStore = defineStore('todoStore', () => {
     }
 })
 
-if (import.meta.hot) {
-    import.meta.hot.accept(acceptHMRUpdate(useTodoStore, import.meta.hot))
-}
+// if (import.meta.hot) {
+//     import.meta.hot.accept(acceptHMRUpdate(useTodoStore, import.meta.hot))
+// }
